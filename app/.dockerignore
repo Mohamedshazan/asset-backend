@@ -1,0 +1,13 @@
+vendor
+.env
+node_modules
+storage/logs
+storage/framework
+bootstrap/cache
+composer.lock
+npm-debug.log
+Dockerfile
+docker-compose.yml
+.vscode
+.idea
+.git

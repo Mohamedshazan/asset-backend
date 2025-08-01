@@ -1,0 +1,76 @@
+import json
+
+# Postman collection structure for support request operations
+postman_collection = {
+    "info": {
+        "name": "Support Requests - Asset Management",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Create Support Request",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {"key": "Authorization", "value": "Bearer {{token}}", "type": "text"}
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": json.dumps({
+                        "asset_id": 1,
+                        "type": "Hardware",
+                        "description": "Laptop screen is flickering"
+                    }, indent=4),
+                    "options": {"raw": {"language": "json"}}
+                },
+                "url": {
+                    "raw": "{{base_url}}/api/support-requests",
+                    "host": ["{{base_url}}"],
+                    "path": ["api", "support-requests"]
+                }
+            }
+        },
+        {
+            "name": "Get Support Requests",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {"key": "Authorization", "value": "Bearer {{token}}", "type": "text"}
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/support-requests",
+                    "host": ["{{base_url}}"],
+                    "path": ["api", "support-requests"]
+                }
+            }
+        },
+        {
+            "name": "Update Support Status",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {"key": "Authorization", "value": "Bearer {{token}}", "type": "text"}
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": json.dumps({
+                        "status": "Resolved"
+                    }, indent=4),
+                    "options": {"raw": {"language": "json"}}
+                },
+                "url": {
+                    "raw": "{{base_url}}/api/support-requests/1/status",
+                    "host": ["{{base_url}}"],
+                    "path": ["api", "support-requests", "1", "status"]
+                }
+            }
+        }
+    ]
+}
+
+# Save to file
+file_path = "/mnt/data/Support_Requests_Postman_Collection.json"
+with open(file_path, "w") as f:
+    json.dump(postman_collection, f, indent=2)
+
+file_path
