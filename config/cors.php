@@ -6,7 +6,7 @@ return [
     'allowed_methods' => ['*'],
 
     'allowed_origins' => [
-        'https://frontend-shazan-0d806d81.koyeb.app',  // your deployed frontend URL here
+        'https://shiham-brandix-batti-assetsystem-d4sd.vercel.app',  // your deployed frontend URL here
         // or use '*' to allow all origins temporarily during testing
     ],
 
