@@ -12,20 +12,28 @@ use App\Http\Controllers\ReportExportController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeDashboardController;
 
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Public Routes
 |--------------------------------------------------------------------------
 */
 
-// Register
-Route::post('/register', function (Request $request) {
+// Register - Only for Admins
+Route::middleware('auth:sanctum')->post('/register', function (Request $request) {
+    if ($request->user()->role !== 'Admin') {
+        return response()->json(['message' => 'Unauthorized. Only Admins can register users.'], 403);
+    }
+
     $request->validate([
         'name' => 'required|string',
         'email' => 'required|email|unique:users',
         'password' => 'required|string|min:6',
         'role' => 'required|in:Admin,IT,Head,Employee',
-        'department_id' => 'nullable|exists:departments,id',
+        'department_name' => 'nullable|exists:departments,name',
     ]);
 
     $user = User::create([
@@ -33,18 +41,16 @@ Route::post('/register', function (Request $request) {
         'email' => $request->email,
         'password' => Hash::make($request->password),
         'role' => $request->role,
-        'department_id' => $request->department_id,
+        'department_name' => $request->department_name,
     ]);
 
-    $token = $user->createToken('api-token')->plainTextToken;
-
     return response()->json([
+        'message' => 'User registered successfully',
         'user' => $user,
-        'token' => $token
     ]);
 });
 
-// Login
+// Login - Public
 Route::post('/login', function (Request $request) {
     $request->validate([
         'email' => 'required|email',
@@ -64,8 +70,6 @@ Route::post('/login', function (Request $request) {
         'token' => $token
     ]);
 });
-
-
 /*
 |--------------------------------------------------------------------------
 | Protected Routes (auth:sanctum)
@@ -81,6 +85,12 @@ Route::middleware('auth:sanctum')->match(['put', 'post'], '/profile', [UserContr
     // Users & Departments
     Route::get('/users', [UserController::class, 'index']);
     Route::get('/departments', [DepartmentController::class, 'index']);
+    Route::delete('/users/{id}', function ($id) {
+    $user = User::findOrFail($id);
+    $user->delete();
+    return response()->json(['message' => 'User deleted successfully']);
+})->middleware('auth:sanctum');
+
 
     // Authenticated User Info
     Route::get('/user', fn (Request $request) => $request->user());
