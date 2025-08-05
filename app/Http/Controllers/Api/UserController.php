@@ -29,12 +29,11 @@ class UserController extends Controller
     /**
      * Update the authenticated user's profile (name + optional avatar)
      */
-   public function updateProfile(Request $request)
+  public function updateProfile(Request $request)
 {
     Log::info('🌟 RAW INPUT:', $request->all());
 
-    // ✅ Get authenticated user
-    /** @var \App\Models\User|null $user */
+    /** @var \App\Models\User $user */
     $user = Auth::user();
     Log::info('AUTH USER:', ['user' => $user]);
 
@@ -43,16 +42,13 @@ class UserController extends Controller
         return response()->json(['message' => 'User not authenticated'], 401);
     }
 
-    // ✅ Validate request
     $validated = $request->validate([
         'name' => 'required|string|max:255',
         'avatar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
     ]);
 
-    // ✅ Update name
     $user->name = $validated['name'];
 
-    // ✅ Handle avatar upload
     if ($request->hasFile('avatar')) {
         if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
             Storage::disk('public')->delete($user->avatar);
@@ -62,21 +58,16 @@ class UserController extends Controller
         $user->avatar = $path;
     }
 
-    // ✅ Save user
     $saved = $user->save();
 
-    if ($saved) {
-        Log::info("✅ User profile updated in DB: {$user->name}");
-    } else {
-        Log::error("❌ Failed to update user.");
-    }
-
-    // ✅ Return response
     return response()->json([
         'message' => $saved ? 'Profile updated' : 'Profile NOT saved',
         'name' => $user->name,
-        'avatarUrl' => $user->avatar ? asset('storage/' . $user->avatar) : null,
+        'avatarUrl' => $user->avatar 
+            ? asset('storage/' . $user->avatar) . '?v=' . time()
+            : null,
     ]);
 }
+
 
 }
