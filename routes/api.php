@@ -66,10 +66,16 @@ Route::post('/login', function (Request $request) {
     $token = $user->createToken('api-token')->plainTextToken;
 
     return response()->json([
-        'user' => $user,
-        'token' => $token
+        'token' => $token,
+        'name' => $user->name,
+        'role' => $user->role,
+        // ✅ Add cache-busting timestamp
+        'avatarUrl' => $user->avatar 
+            ? asset('storage/' . $user->avatar) . '?v=' . time() 
+            : null,
     ]);
 });
+
 /*
 |--------------------------------------------------------------------------
 | Protected Routes (auth:sanctum)
