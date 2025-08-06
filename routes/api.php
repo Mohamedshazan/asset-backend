@@ -17,31 +17,7 @@ use App\Http\Controllers\DepartmentController;
 |--------------------------------------------------------------------------
 */
 
-// Authentication
-Route::post('/register', function (Request $request) {
-    $request->validate([
-        'name' => 'required|string',
-        'email' => 'required|email|unique:users',
-        'password' => 'required|string|min:6',
-        'role' => 'required|in:Admin,IT,Head,Employee',
-        'department_id' => 'nullable|exists:departments,id',
-    ]);
 
-    $user = User::create([
-        'name' => $request->name,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
-        'role' => $request->role,
-        'department_id' => $request->department_id,
-    ]);
-
-    $token = $user->createToken('api-token')->plainTextToken;
-
-    return response()->json([
-        'user' => $user,
-        'token' => $token
-    ]);
-});
 
 Route::post('/login', function (Request $request) {
     $request->validate([
@@ -93,6 +69,13 @@ Route::middleware('auth:sanctum')->group(function () {
     // Users & Departments
     Route::get('/users', [UserController::class, 'index']);
     Route::get('/departments', [DepartmentController::class, 'index']);
+
+
+    Route::middleware(['auth:sanctum', 'role:Admin'])->group(function () {
+    Route::post('/dashboard/register', [UserController::class, 'register']);
+    });
+
+
 
     /*
     |--------------------------------------------------------------------------
