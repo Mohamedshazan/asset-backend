@@ -52,4 +52,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(\App\Models\Asset::class, 'user_id');
     }
+
+    public function department()
+    {
+        return $this->belongsTo(\App\Models\Department::class);
+    }
+
+    public function oldAssets()
+    {
+        // Define this based on your logic. For example:
+        return $this->hasMany(Asset::class, 'user_id')->where('status', 'old');
+    }
 }
