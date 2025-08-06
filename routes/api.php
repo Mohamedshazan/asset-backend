@@ -10,11 +10,6 @@ use App\Http\Controllers\SupportRequestController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ReportExportController;
 use App\Http\Controllers\DepartmentController;
-use App\Http\Controllers\EmployeeDashboardController;
-
-
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -22,18 +17,14 @@ use App\Http\Controllers\EmployeeDashboardController;
 |--------------------------------------------------------------------------
 */
 
-// Register - Only for Admins
-Route::middleware('auth:sanctum')->post('/register', function (Request $request) {
-    if ($request->user()->role !== 'Admin') {
-        return response()->json(['message' => 'Unauthorized. Only Admins can register users.'], 403);
-    }
-
+// Authentication
+Route::post('/register', function (Request $request) {
     $request->validate([
         'name' => 'required|string',
         'email' => 'required|email|unique:users',
         'password' => 'required|string|min:6',
         'role' => 'required|in:Admin,IT,Head,Employee',
-        'department_name' => 'nullable|exists:departments,name',
+        'department_id' => 'nullable|exists:departments,id',
     ]);
 
     $user = User::create([
@@ -41,16 +32,17 @@ Route::middleware('auth:sanctum')->post('/register', function (Request $request)
         'email' => $request->email,
         'password' => Hash::make($request->password),
         'role' => $request->role,
-        'department_name' => $request->department_name,
+        'department_id' => $request->department_id,
     ]);
 
+    $token = $user->createToken('api-token')->plainTextToken;
+
     return response()->json([
-        'message' => 'User registered successfully',
         'user' => $user,
+        'token' => $token
     ]);
 });
 
-// Login - Public
 Route::post('/login', function (Request $request) {
     $request->validate([
         'email' => 'required|email',
@@ -65,15 +57,13 @@ Route::post('/login', function (Request $request) {
 
     $token = $user->createToken('api-token')->plainTextToken;
 
-    return response()->json([
-        'token' => $token,
-        'name' => $user->name,
-        'role' => $user->role,
-        // ✅ Add cache-busting timestamp
-        'avatarUrl' => $user->avatar 
-            ? asset('storage/' . $user->avatar) . '?v=' . time() 
-            : null,
-    ]);
+   return response()->json([
+    'name' => $user->name,
+    'role' => $user->role,
+    'avatarUrl' => $user->avatar ? asset('storage/' . $user->avatar) : null,
+    'token' => $token
+]);
+
 });
 
 /*
@@ -81,25 +71,28 @@ Route::post('/login', function (Request $request) {
 | Protected Routes (auth:sanctum)
 |--------------------------------------------------------------------------
 */
-
 Route::middleware('auth:sanctum')->group(function () {
 
     // Profile Update
-// Accept both PUT and POST (with _method override)
-Route::middleware('auth:sanctum')->match(['put', 'post'], '/profile', [UserController::class, 'updateProfile']);
+    Route::match(['put', 'post'], '/profile', [UserController::class, 'updateProfile']);
+
+    // Authenticated User Info
+    Route::get('/user', function (Request $request) {
+        $user = $request->user();
+        if (!$user) {
+            return response()->json(['message' => 'Unauthenticated'], 401);
+        }
+
+        return [
+            'name' => $user->name,
+            'avatarUrl' => $user->avatar ? asset('storage/' . $user->avatar) : null,
+            'role' => $user->role ?? 'Employee',
+        ];
+    });
 
     // Users & Departments
     Route::get('/users', [UserController::class, 'index']);
     Route::get('/departments', [DepartmentController::class, 'index']);
-    Route::delete('/users/{id}', function ($id) {
-    $user = User::findOrFail($id);
-    $user->delete();
-    return response()->json(['message' => 'User deleted successfully']);
-})->middleware('auth:sanctum');
-
-
-    // Authenticated User Info
-    Route::get('/user', fn (Request $request) => $request->user());
 
     /*
     |--------------------------------------------------------------------------
@@ -110,10 +103,13 @@ Route::middleware('auth:sanctum')->match(['put', 'post'], '/profile', [UserContr
         Route::get('/dashboard/admin', 'adminSummary')->middleware('role:Admin');
         Route::get('/dashboard/it', 'itSupportDashboard')->middleware('role:IT');
         Route::get('/dashboard/employee', 'employeeDashboard')->middleware('role:Employee');
-        Route::get('/dashboard/asset-count', 'totalAssets')->middleware('role:Admin,IT');
-        Route::get('/dashboard/assigned', 'assignedAssets')->middleware('role:Admin,IT');
-        Route::get('/dashboard/available', 'availableAssets')->middleware('role:Admin,IT');
-        Route::get('/dashboard/support-requests', 'supportRequestStats')->middleware('role:Admin,IT');
+
+        Route::middleware('role:Admin,IT')->group(function () {
+            Route::get('/dashboard/asset-count', 'totalAssets');
+            Route::get('/dashboard/assigned', 'assignedAssets');
+            Route::get('/dashboard/available', 'availableAssets');
+            Route::get('/dashboard/support-requests', 'supportRequestStats');
+        });
     });
 
     /*
@@ -123,13 +119,16 @@ Route::middleware('auth:sanctum')->match(['put', 'post'], '/profile', [UserContr
     */
     Route::controller(AssetController::class)->group(function () {
         Route::get('/my-assets', 'myAssets')->middleware('role:Employee');
-        Route::post('/assets', 'store')->middleware('role:Admin');
-        Route::get('/assets', 'index')->middleware('role:Admin');
-        Route::get('/assets/{id}', 'show')->middleware('role:Admin');
-        Route::put('/assets/{id}', 'update')->middleware('role:Admin');
-        Route::delete('/assets/{id}', 'destroy')->middleware('role:Admin');
-        Route::post('/assets/{id}/assign', 'assign')->middleware('role:Admin');
-        Route::post('/assets/{id}/unassign', 'unassign')->middleware('role:Admin');
+
+        Route::middleware('role:Admin')->group(function () {
+            Route::post('/assets', 'store');
+            Route::get('/assets', 'index');
+            Route::get('/assets/{id}', 'show');
+            Route::put('/assets/{id}', 'update');
+            Route::delete('/assets/{id}', 'destroy');
+            Route::post('/assets/{id}/assign', 'assign');
+            Route::post('/assets/{id}/unassign', 'unassign');
+        });
     });
 
     /*
@@ -150,12 +149,14 @@ Route::middleware('auth:sanctum')->match(['put', 'post'], '/profile', [UserContr
     | Report Exports
     |--------------------------------------------------------------------------
     */
-    Route::controller(ReportExportController::class)->middleware('role:Admin,IT')->group(function () {
-        Route::get('/export/assets/csv', 'exportAssetsCsv');
-        Route::get('/export/assets/pdf', 'exportAssetsPdf');
-        Route::get('/export/support/csv', 'exportSupportCsv');
-        Route::get('/export/support/pdf', 'exportSupportPdf');
-        Route::get('/export/assets', 'exportAssets');
-        Route::get('/export/support-requests', 'exportSupportRequests');
-    });
+    Route::controller(ReportExportController::class)
+        ->middleware('role:Admin,IT')
+        ->group(function () {
+            Route::get('/export/assets/csv', 'exportAssetsCsv');
+            Route::get('/export/assets/pdf', 'exportAssetsPdf');
+            Route::get('/export/support/csv', 'exportSupportCsv');
+            Route::get('/export/support/pdf', 'exportSupportPdf');
+            Route::get('/export/assets', 'exportAssets');
+            Route::get('/export/support-requests', 'exportSupportRequests');
+        });
 });
