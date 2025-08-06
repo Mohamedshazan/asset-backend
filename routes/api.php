@@ -17,8 +17,7 @@ use App\Http\Controllers\DepartmentController;
 |--------------------------------------------------------------------------
 */
 
-
-
+// Login
 Route::post('/login', function (Request $request) {
     $request->validate([
         'email' => 'required|email',
@@ -33,18 +32,17 @@ Route::post('/login', function (Request $request) {
 
     $token = $user->createToken('api-token')->plainTextToken;
 
-   return response()->json([
-    'name' => $user->name,
-    'role' => $user->role,
-    'avatarUrl' => $user->avatar ? asset('storage/' . $user->avatar) : null,
-    'token' => $token
-]);
-
+    return response()->json([
+        'name'       => $user->name,
+        'role'       => $user->role,
+        'avatarUrl'  => $user->avatar ? asset('storage/' . $user->avatar) : null,
+        'token'      => $token
+    ]);
 });
 
 /*
 |--------------------------------------------------------------------------
-| Protected Routes (auth:sanctum)
+| Protected Routes
 |--------------------------------------------------------------------------
 */
 Route::middleware('auth:sanctum')->group(function () {
@@ -60,26 +58,43 @@ Route::middleware('auth:sanctum')->group(function () {
         }
 
         return [
-            'name' => $user->name,
+            'name'      => $user->name,
             'avatarUrl' => $user->avatar ? asset('storage/' . $user->avatar) : null,
-            'role' => $user->role ?? 'Employee',
+            'role'      => $user->role ?? 'Employee',
         ];
     });
 
-    // Users & Departments
-    Route::get('/users', [UserController::class, 'index']);
-    Route::get('/departments', [DepartmentController::class, 'index']);
+    /*
+    |--------------------------------------------------------------------------
+    | User Assets Agreement
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/users/{id}/assets-agreement', [UserController::class, 'assetsAgreement']);
 
-
-    Route::middleware(['auth:sanctum', 'role:Admin'])->group(function () {
-    Route::post('/dashboard/register', [UserController::class, 'register']);
+    // PDF & Email for asset agreements
+    Route::prefix('users/{user}/assets/{asset}')->group(function () {
+        Route::get('/agreement-pdf', [UserController::class, 'assetAgreementPdf']);
+        Route::post('/send-agreement-email', [UserController::class, 'sendAssetAgreementEmail']);
     });
-
-
 
     /*
     |--------------------------------------------------------------------------
-    | Dashboard Routes
+    | Users & Departments
+    |--------------------------------------------------------------------------
+    */
+    Route::middleware('role:Admin,IT')->group(function () {
+        Route::get('/users', [UserController::class, 'index']);
+        Route::get('/users/{id}', [UserController::class, 'show']);
+        Route::post('/dashboard/register', [UserController::class, 'register']);
+        Route::put('/users/{id}', [UserController::class, 'update']);
+        Route::delete('/users/{id}', [UserController::class, 'destroy']);
+
+        Route::get('/departments', [DepartmentController::class, 'index']);
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Dashboard
     |--------------------------------------------------------------------------
     */
     Route::controller(DashboardController::class)->group(function () {
