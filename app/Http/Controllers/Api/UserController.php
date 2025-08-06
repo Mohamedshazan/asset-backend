@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth; // ✅ Add this line
+ use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
@@ -29,7 +31,9 @@ class UserController extends Controller
     /**
      * Update the authenticated user's profile (name + optional avatar)
      */
-  public function updateProfile(Request $request)
+
+
+public function updateProfile(Request $request)
 {
     Log::info('🌟 RAW INPUT:', $request->all());
 
@@ -66,14 +70,25 @@ class UserController extends Controller
         Log::error("❌ Failed to update user.");
     }
 
-    // ✅ Always return the same format as /api/user
-  return response()->json([
-    'name' => $user->name,
-    'avatarUrl' => $user->avatar ? asset('storage/' . $user->avatar) : null,
-    'role' => $user->role ?? 'Employee',
-]);
+    // 🔹 Auto-run storage:link if missing
+    $publicStoragePath = public_path('storage');
+    if (!File::exists($publicStoragePath)) {
+        try {
+            Artisan::call('storage:link');
+            Log::info('✅ storage:link command executed automatically.');
+        } catch (\Exception $e) {
+            Log::error('❌ Failed to run storage:link: ' . $e->getMessage());
+        }
+    }
 
+    // ✅ Always return the same format as /api/user
+    return response()->json([
+        'name' => $user->name,
+        'avatarUrl' => $user->avatar ? asset('storage/' . $user->avatar) : null,
+        'role' => $user->role ?? 'Employee',
+    ]);
 }
+
 
 
 }
