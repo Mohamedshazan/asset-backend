@@ -33,7 +33,7 @@ class UserController extends Controller
 {
     Log::info('🌟 RAW INPUT:', $request->all());
 
-    /** @var \App\Models\User $user */
+    /** @var \App\Models\User|null $user */
     $user = Auth::user();
     Log::info('AUTH USER:', ['user' => $user]);
 
@@ -60,13 +60,19 @@ class UserController extends Controller
 
     $saved = $user->save();
 
-    return response()->json([
-        'message' => $saved ? 'Profile updated' : 'Profile NOT saved',
-        'name' => $user->name,
-        'avatarUrl' => $user->avatar 
-            ? asset('storage/' . $user->avatar) . '?v=' . time()
-            : null,
-    ]);
+    if ($saved) {
+        Log::info("✅ User profile updated in DB: {$user->name}");
+    } else {
+        Log::error("❌ Failed to update user.");
+    }
+
+    // ✅ Always return the same format as /api/user
+  return response()->json([
+    'name' => $user->name,
+    'avatarUrl' => $user->avatar ? asset('storage/' . $user->avatar) : null,
+    'role' => $user->role ?? 'Employee',
+]);
+
 }
 
 
