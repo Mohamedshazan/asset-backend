@@ -17,24 +17,22 @@
             color: #000;
             box-sizing: border-box;
         }
-        *, *::before, *::after {
+        *, *:before, *:after {
             box-sizing: inherit;
         }
 
-        /* Outer container with border and padding */
+        /* Outer page border container */
         .container {
             width: 100%;
             max-height: 270mm; /* fit inside A4 minus margins */
-            padding: 15px 25px;
-            border: 3px solid black;
+            padding: 15px 25px; /* balanced padding for professional look */
+            border: 3px solid black; /* outer page border */
             overflow: hidden;
-            page-break-inside: avoid;
             box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
+            page-break-inside: avoid;
         }
 
-        /* Header with logo and company info */
+        /* Header flex container */
         .header-container {
             display: flex;
             justify-content: space-between;
@@ -53,31 +51,20 @@
             line-height: 1.2;
         }
 
-        /* Content row to hold main content and asset details side by side */
-        .content-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 20px;
-            gap: 20px; /* spacing between left content and right asset details */
-        }
-
-        /* Left main content placeholder (empty here, but needed for layout) */
-        .main-content {
-            flex: 1; /* takes remaining space */
-        }
-
-        /* Asset details box on right */
+        /* Asset details box aligned right */
         .asset-details-wrapper {
             width: 360px;
+            float: right;
+            margin-bottom: 20px;
             background-color: #fafafa;
             padding: 10px 15px;
-            border-radius: 4px;
             box-sizing: border-box;
-            /* no float anymore */
+            border-radius: 4px;
+            /* No outer border on wrapper */
+            clear: both;
         }
 
-        /* Table styles with borders */
+        /* Table styles */
         .asset-details-wrapper table {
             border-collapse: collapse;
             width: 100%;
@@ -132,32 +119,26 @@
             </div>
         </div>
 
-        <div class="content-row">
-            <div class="main-content">
-                <!-- Left side empty or add other content here if needed -->
-            </div>
-
-            <div class="asset-details-wrapper">
-                <h3>Asset Details</h3>
-                <table>
-                    <tr>
-                        <th>Device Name</th>
-                        <td>{{ $asset->device_name ?? '-' }}</td>
-                    </tr>
-                    <tr>
-                        <th>Brand</th>
-                        <td>{{ $asset->brand ?? '-' }}</td>
-                    </tr>
-                    <tr>
-                        <th>Model</th>
-                        <td>{{ $asset->model ?? '-' }}</td>
-                    </tr>
-                    <tr>
-                        <th>Serial Number</th>
-                        <td>{{ $asset->serial_number ?? '-' }}</td>
-                    </tr>
-                </table>
-            </div>
+        <div class="asset-details-wrapper">
+            <h3>Asset Details</h3>
+            <table>
+                <tr>
+                    <th>Device Name</th>
+                    <td>{{ $asset->device_name ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <th>Brand</th>
+                    <td>{{ $asset->brand ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <th>Model</th>
+                    <td>{{ $asset->model ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <th>Serial Number</th>
+                    <td>{{ $asset->serial_number ?? '-' }}</td>
+                </tr>
+            </table>
         </div>
 
         <div class="double-line"></div>
