@@ -186,16 +186,17 @@ p {
         </p>
 
         <!-- Signature and Date in one paragraph -->
-        <p class="inline-signature-date">
-            <span>
-                <span class="line"></span>
-                Signature
-            </span>
-            <span>
-                <span class="line"></span>
-                Date
-            </span>
-        </p>
+      <p class="inline-signature-date">
+    <span>
+        <span class="line"></span>
+        Signature
+    </span>
+    <span>
+        <span class="line"></span>
+        Date
+    </span>
+</p>
+
 
         <div class="notes">
             <strong>*Note.</strong><br>
@@ -207,5 +208,6 @@ p {
 </body>
 
 </html>
+
 
 
