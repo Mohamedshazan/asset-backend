@@ -22,14 +22,15 @@ body {
 }
 
 .container {
-    max-width: 170mm; /* A4 width minus 2*15mm padding */
-    margin: 10mm auto; /* centers container horizontally and adds vertical margin */
-    padding: 5mm;
+    max-width: 190mm; /* closer to full A4 width (210mm) minus @page margins */
+    margin: 5mm auto; /* reduce vertical margin */
+    padding: 3mm; /* less padding inside the border */
     border: 1px solid black;
     box-sizing: border-box;
     overflow: hidden;
     page-break-inside: avoid;
 }
+
 
 .header-container {
     display: flex;
@@ -178,6 +179,7 @@ body {
     </div>
 </body>
 </html>
+
 
 
 
