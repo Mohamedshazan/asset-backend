@@ -42,7 +42,9 @@ body {
     height: 70px;
     width: auto;
     object-fit: contain;
+    margin-top: 8px; /* Adjust this value as needed */
 }
+
 
 .company-info {
     text-align: right;
@@ -176,5 +178,6 @@ body {
     </div>
 </body>
 </html>
+
 
 
