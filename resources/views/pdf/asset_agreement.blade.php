@@ -24,6 +24,10 @@
             text-align: right;
             flex-grow: 1;
         }
+        .asset-details-container {
+            text-align: right;
+            margin-bottom: 20px;
+        }
         table { 
             border-collapse: collapse; 
             width: auto; 
@@ -34,6 +38,11 @@
         }
         th, td { 
             padding: 6px 10px; 
+        }
+        /* Right align the table */
+        .asset-details-container table {
+            margin-left: auto;
+            margin-right: 0;
         }
         .note {
             margin-top: 20px; 
@@ -52,28 +61,30 @@
     </div>
 </div>
 
-<h3>Asset Details</h3>
-<table>
-    <tr>
-        <th>Device Name</th>
-        <td>{{ $asset->device_name ?? '-' }}</td>
-    </tr>
-    <tr>
-        <th>Brand</th>
-        <td>{{ $asset->brand ?? '-' }}</td>
-    </tr>
-    <tr>
-        <th>Model</th>
-        <td>{{ $asset->model ?? '-' }}</td>
-    </tr>
-    <tr>
-        <th>Serial Number</th>
-        <td>{{ $asset->serial_number ?? '-' }}</td>
-    </tr>
-</table>
+<div class="asset-details-container">
+    <h3>Asset Details</h3>
+    <table>
+        <tr>
+            <th>Device Name</th>
+            <td>{{ $asset->device_name ?? '-' }}</td>
+        </tr>
+        <tr>
+            <th>Brand</th>
+            <td>{{ $asset->brand ?? '-' }}</td>
+        </tr>
+        <tr>
+            <th>Model</th>
+            <td>{{ $asset->model ?? '-' }}</td>
+        </tr>
+        <tr>
+            <th>Serial Number</th>
+            <td>{{ $asset->serial_number ?? '-' }}</td>
+        </tr>
+    </table>
 
-<p><strong>Date:</strong> {{ $date }}</p>
-<p><strong>Employee Name:</strong> {{ $user->name }}</p>
+    <p><strong>Date:</strong> {{ $date }}</p>
+    <p><strong>Employee Name:</strong> {{ $user->name }}</p>
+</div>
 
 <p>
 I, <strong>{{ $user->name }}</strong>, acknowledge receipt of a <strong>{{ $asset->asset_type ?? 'Desktop' }}</strong> and its accessories with serial number <strong>{{ $asset->serial_number }}</strong>.  
