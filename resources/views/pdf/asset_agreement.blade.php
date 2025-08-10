@@ -7,7 +7,7 @@
     <style>
 @page {
     size: A4;
-    margin: 15mm;
+    margin: 2mm;
 }
 
 body {
@@ -166,5 +166,6 @@ p {
 </body>
 
 </html>
+
 
 
