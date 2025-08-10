@@ -98,14 +98,14 @@ p {
 
 /* Signature Table - PDF Safe */
 .signature-table {
-    width: 100%;
+    width: 70%;
     margin-top: 40px;
     border-collapse: collapse;
     text-align: center;
 }
 
 .signature-table td {
-    width: 50%;
+    width: 25%;
     vertical-align: top;
     padding: 0 20px;
 }
@@ -206,6 +206,7 @@ p {
 </body>
 
 </html>
+
 
 
 
