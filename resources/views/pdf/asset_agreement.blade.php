@@ -11,21 +11,28 @@
         body {
             font-family: 'DejaVu Sans', sans-serif;
             font-size: 14px;
-            line-height: 1.5;
+            line-height: 1.4;
             margin: 0;
             padding: 0;
-            page-break-inside: avoid;
             color: #000;
+            box-sizing: border-box;
         }
-        /* Border around the entire page content */
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
+        /* Outer page border container */
         .container {
             width: 100%;
             max-height: 270mm; /* fit inside A4 minus margins */
+            padding: 15px 25px; /* balanced padding for professional look */
+            border: 3px solid black; /* outer page border */
             overflow: hidden;
-            border: 3px solid black; /* Outer page border */
-            padding: 20px;
             box-sizing: border-box;
+            page-break-inside: avoid;
         }
+
+        /* Header flex container */
         .header-container {
             display: flex;
             justify-content: space-between;
@@ -33,60 +40,72 @@
             margin-bottom: 20px;
         }
         .logo {
-            height: 70px; /* Increased logo size */
+            height: 70px;
             width: auto;
+            object-fit: contain;
         }
         .company-info {
             text-align: right;
-            font-weight: bold;
+            font-weight: 700;
             font-size: 16px;
+            line-height: 1.2;
         }
 
-        /* Asset details wrapper without border */
+        /* Asset details box aligned right */
         .asset-details-wrapper {
-            width: 360px; /* Standard width */
-            float: right; /* Align right */
+            width: 360px;
+            float: right;
             margin-bottom: 20px;
             background-color: #fafafa;
+            padding: 10px 15px;
             box-sizing: border-box;
+            border-radius: 4px;
+            /* No outer border on wrapper */
+            clear: both;
         }
 
-        /* Table styles without borders */
+        /* Table styles */
         .asset-details-wrapper table {
             border-collapse: collapse;
             width: 100%;
-            margin: 10px 0;
+            margin: 10px 0 0 0;
         }
-        /* Remove all borders */
-        .asset-details-wrapper table, 
-        .asset-details-wrapper th, 
+        .asset-details-wrapper th,
         .asset-details-wrapper td {
-            border: none;
-        }
-        .asset-details-wrapper th, 
-        .asset-details-wrapper td {
+            border: 1px solid #000;
             padding: 6px 10px;
             text-align: left;
+            vertical-align: middle;
         }
         .asset-details-wrapper th {
             background-color: #f2f2f2;
             width: 40%;
+            font-weight: 600;
         }
 
+        /* Double line separator */
         .double-line {
             border-top: 3px double black;
-            margin: 10px 0;
-            clear: both; /* Clear floats */
+            margin: 15px 0 15px 0;
+            clear: both;
         }
+
+        p {
+            margin: 8px 0;
+        }
+
         .signature-section {
             margin-top: 30px;
             clear: both;
+            font-size: 14px;
         }
+
         .notes {
             margin-top: 25px;
             font-size: 12px;
             font-style: italic;
             clear: both;
+            line-height: 1.3;
         }
     </style>
 </head>
