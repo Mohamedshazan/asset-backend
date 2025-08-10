@@ -22,10 +22,10 @@ body {
 }
 
 .container {
-    max-width: 180mm; /* A4 width minus 2*15mm padding */
-    margin: 20mm auto; /* centers container horizontally and adds vertical margin */
-    padding: 15mm;
-    border: 3px solid black;
+    max-width: 160mm; /* A4 width minus 2*15mm padding */
+    margin: 10mm auto; /* centers container horizontally and adds vertical margin */
+    padding: 10mm;
+    border: 2px solid black;
     box-sizing: border-box;
     overflow: hidden;
     page-break-inside: avoid;
@@ -178,6 +178,7 @@ body {
     </div>
 </body>
 </html>
+
 
 
 
