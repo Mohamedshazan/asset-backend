@@ -29,36 +29,57 @@
             margin-bottom: 20px;
         }
         .logo {
-            height: 45px;
+            height: 70px; /* Increased logo height */
+            width: auto;
         }
         .company-info {
             text-align: right;
             font-weight: bold;
             font-size: 16px;
         }
-        table {
+
+        /* New wrapper around asset details to add border and right alignment */
+        .asset-details-wrapper {
+            border: 2px solid black;
+            padding: 15px;
+            width: 360px; /* Standard fixed width */
+            float: right; /* Align to right */
+            margin-bottom: 20px;
+            background-color: #fafafa;
+            box-sizing: border-box;
+        }
+
+        /* Style table inside asset details wrapper */
+        .asset-details-wrapper table {
             border-collapse: collapse;
-            width: auto;
+            width: 100%;
             margin: 10px 0;
         }
-        table, th, td {
+        .asset-details-wrapper table, 
+        .asset-details-wrapper th, 
+        .asset-details-wrapper td {
             border: 1px solid black;
         }
-        th, td {
+        .asset-details-wrapper th, 
+        .asset-details-wrapper td {
             padding: 6px 10px;
             text-align: left;
         }
+
         .double-line {
             border-top: 3px double black;
             margin: 10px 0;
+            clear: both; /* Clear float for lines below */
         }
         .signature-section {
             margin-top: 30px;
+            clear: both;
         }
         .notes {
             margin-top: 25px;
             font-size: 12px;
             font-style: italic;
+            clear: both;
         }
     </style>
 </head>
@@ -72,25 +93,28 @@
             </div>
         </div>
 
-        <h3>Asset Details</h3>
-        <table>
-            <tr>
-                <th>Device Name</th>
-                <td>{{ $asset->device_name ?? '-' }}</td>
-            </tr>
-            <tr>
-                <th>Brand</th>
-                <td>{{ $asset->brand ?? '-' }}</td>
-            </tr>
-            <tr>
-                <th>Model</th>
-                <td>{{ $asset->model ?? '-' }}</td>
-            </tr>
-            <tr>
-                <th>Serial Number</th>
-                <td>{{ $asset->serial_number ?? '-' }}</td>
-            </tr>
-        </table>
+        <!-- Asset Details section with border and right alignment -->
+        <div class="asset-details-wrapper">
+            <h3>Asset Details</h3>
+            <table>
+                <tr>
+                    <th>Device Name</th>
+                    <td>{{ $asset->device_name ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <th>Brand</th>
+                    <td>{{ $asset->brand ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <th>Model</th>
+                    <td>{{ $asset->model ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <th>Serial Number</th>
+                    <td>{{ $asset->serial_number ?? '-' }}</td>
+                </tr>
+            </table>
+        </div>
 
         <div class="double-line"></div>
 
