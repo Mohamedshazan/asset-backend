@@ -88,30 +88,52 @@ body {
             font-weight: 600;
         }
 
-        /* Double line separator */
-        .double-line {
-            border-top: 3px double black;
-            margin: 15px 0 15px 0;
-            clear: both;
-        }
+       /* Double line separator */
+.double-line {
+    border-top: 3px double black;
+    margin: 15px 0 15px 0;
+    clear: both;
+}
 
-        p {
-            margin: 8px 0;
-        }
+p {
+    margin: 8px 0;
+}
 
-        .signature-section {
-            margin-top: 30px;
-            clear: both;
-            font-size: 14px;
-        }
+/* Updated signature section */
+.signature-section {
+    margin-top: 30px;
+    clear: both;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 400px;
+}
 
-        .notes {
-            margin-top: 25px;
-            font-size: 12px;
-            font-style: italic;
-            clear: both;
-            line-height: 1.3;
-        }
+.signature-section > div {
+    width: 45%;
+    text-align: center;
+}
+
+.signature-section .line {
+    border-bottom: 1px solid black;
+    height: 1.5em;
+    margin-bottom: 5px;
+}
+
+/* Label under the line */
+.signature-section .label {
+    font-weight: normal;
+    font-size: 14px;
+}
+
+/* Notes */
+.notes {
+    margin-top: 25px;
+    font-size: 12px;
+    font-style: italic;
+    clear: both;
+    line-height: 1.3;
+}
     </style>
 </head>
 <body>
@@ -166,9 +188,17 @@ body {
             I agree to adhere to all company regulations and policies governing the use of this equipment as stated in the Brandix Essentials ICT Policy.
         </p>
 
-        <div class="signature-section">
-            <p>Signature: _________________________</p>
-        </div>
+      <div class="signature-section">
+  <div>
+    <div class="line"></div>
+    <div class="label">Signature</div>
+  </div>
+  <div>
+    <div class="line"></div>
+    <div class="label">Date</div>
+  </div>
+</div>
+
 
         <div class="notes">
             <strong>*Note.</strong><br>
@@ -179,6 +209,7 @@ body {
     </div>
 </body>
 </html>
+
 
 
 
