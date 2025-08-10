@@ -7,7 +7,7 @@
     <style>
 @page {
     size: A4;
-    margin: 1mm;
+    margin: 15mm; /* equal margin on all four sides */
 }
 
 body {
@@ -25,15 +25,13 @@ body {
 }
 
 .container {
-    max-width: 190mm;
-    margin: 5mm auto 2mm auto;
-    padding: 3mm;
     border: 1px solid black;
+    padding: 8mm;
+    height: calc(100% - 2mm);
     box-sizing: border-box;
-    overflow: hidden;
-    page-break-inside: avoid;
 }
 
+/* Header */
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -45,7 +43,6 @@ body {
     height: 70px;
     width: auto;
     object-fit: contain;
-    margin-top: 8px;
 }
 
 .company-info {
@@ -55,6 +52,7 @@ body {
     line-height: 1.2;
 }
 
+/* Asset Details */
 .asset-details-wrapper {
     width: 360px;
     margin-left: auto;
@@ -62,14 +60,12 @@ body {
     background-color: #fafafa;
     padding: 10px 15px;
     border-radius: 4px;
-    box-sizing: border-box;
-    clear: both;
 }
 
 .asset-details-wrapper table {
     border-collapse: collapse;
     width: 100%;
-    margin: 10px 0 0 0;
+    margin-top: 10px;
 }
 
 .asset-details-wrapper th,
@@ -77,7 +73,6 @@ body {
     border: 1px solid #000;
     padding: 6px 10px;
     text-align: left;
-    vertical-align: middle;
 }
 
 .asset-details-wrapper th {
@@ -89,14 +84,13 @@ body {
 .double-line {
     border-top: 3px double black;
     margin: 15px 0;
-    clear: both;
 }
 
 p {
     margin: 8px 0;
 }
 
-/* Signature Table - PDF Safe */
+/* Signature */
 .signature-table {
     width: 70%;
     margin-top: 40px;
@@ -121,10 +115,8 @@ p {
     margin-top: 25px;
     font-size: 12px;
     font-style: italic;
-    clear: both;
     line-height: 1.3;
 }
-
     </style>
 </head>
 
@@ -180,21 +172,18 @@ p {
             I agree to adhere to all company regulations and policies governing the use of this equipment as stated in the Brandix Essentials ICT Policy.
         </p>
 
-        <!-- Signature and Date in one paragraph -->
-    <table class="signature-table">
-    <tr>
-        <td>
-            <div class="line"></div>
-            Signature
-        </td>
-        <td>
-            <div class="line"></div>
-            Date
-        </td>
-    </tr>
-</table>
-
-
+        <table class="signature-table">
+            <tr>
+                <td>
+                    <div class="line"></div>
+                    Signature
+                </td>
+                <td>
+                    <div class="line"></div>
+                    Date
+                </td>
+            </tr>
+        </table>
 
         <div class="notes">
             <strong>*Note.</strong><br>
@@ -206,8 +195,3 @@ p {
 </body>
 
 </html>
-
-
-
-
-
