@@ -16,7 +16,7 @@
             margin-bottom: 15px;
         }
         .logo {
-            height: 50px;
+            height: 60px;
         }
         .company-info {
             text-align: right;
@@ -27,14 +27,14 @@
         table {
             width: auto;
             border-collapse: collapse;
-            margin: 15px 0 15px auto;
+            margin: 14px 0 14px auto;
             text-align: left;
         }
         table, th, td {
             border: 1px solid black;
         }
         th, td {
-            padding: 5px 15px 5px 5px;
+            padding: 4px 14px 4px 4px;
         }
         .underline {
             text-decoration: underline;
@@ -46,12 +46,12 @@
             margin: 15px 0;
         }
         .note {
-            font-size: 12px;
+            font-size: 11px;
             font-style: italic;
         }
         .make-model {
             text-align: right;
-            margin: 15px 0;
+            margin: 14px 0;
         }
     </style>
 </head>
