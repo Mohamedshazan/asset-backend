@@ -99,14 +99,13 @@ p {
     margin: 8px 0;
 }
 
-/* Updated signature section */
 .signature-section {
     margin-top: 30px;
-    clear: both;
     font-size: 14px;
     display: flex;
     justify-content: space-between;
     max-width: 400px;
+    flex-wrap: nowrap;
 }
 
 .signature-section > div {
@@ -120,11 +119,11 @@ p {
     margin-bottom: 5px;
 }
 
-/* Label under the line */
 .signature-section .label {
     font-weight: normal;
     font-size: 14px;
 }
+
 
 /* Notes */
 .notes {
@@ -209,6 +208,7 @@ p {
     </div>
 </body>
 </html>
+
 
 
 
