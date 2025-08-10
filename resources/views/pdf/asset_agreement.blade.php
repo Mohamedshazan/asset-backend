@@ -7,7 +7,7 @@
     <style>
 @page {
     size: A4;
-    margin: 15mm; /* equal margin on all four sides */
+    margin: 1mm; /* equal margin on all four sides */
 }
 
 body {
@@ -195,3 +195,4 @@ p {
 </body>
 
 </html>
+
