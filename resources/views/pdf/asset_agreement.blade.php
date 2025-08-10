@@ -4,65 +4,67 @@
     <meta charset="utf-8">
     <title>Asset Agreement</title>
     <style>
-        @page {
-            size: A4;
-            margin: 20mm 15mm 20mm 15mm;
-        }
-        body {
-            font-family: 'DejaVu Sans', sans-serif;
-            font-size: 14px;
-            line-height: 1.4;
-            margin: 0;
-            padding: 0;
-            color: #000;
-            box-sizing: border-box;
-        }
-        *, *:before, *:after {
-            box-sizing: inherit;
-        }
+       @page {
+    size: A4;
+    margin: 20mm; /* equal margin all sides */
+}
+body {
+    font-family: 'DejaVu Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
+    color: #000;
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
 
-        /* Outer page border container */
-        .container {
-            width: 100%;
-            max-height: 270mm; /* fit inside A4 minus margins */
-            padding: 15px 25px; /* balanced padding for professional look */
-            border: 3px solid black; /* outer page border */
-            overflow: hidden;
-            box-sizing: border-box;
-            page-break-inside: avoid;
-        }
+.container {
+    max-width: 180mm; /* A4 width minus 2*15mm padding */
+    margin: 20mm auto; /* centers container horizontally and adds vertical margin */
+    padding: 15mm;
+    border: 3px solid black;
+    box-sizing: border-box;
+    overflow: hidden;
+    page-break-inside: avoid;
+}
 
-        /* Header flex container */
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .logo {
-            height: 70px;
-            width: auto;
-            object-fit: contain;
-        }
-        .company-info {
-            text-align: right;
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 1.2;
-        }
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
-        /* Asset details box aligned right */
-        .asset-details-wrapper {
-            width: 360px;
-            float: right;
-            margin-bottom: 20px;
-            background-color: #fafafa;
-            padding: 10px 15px;
-            box-sizing: border-box;
-            border-radius: 4px;
-            /* No outer border on wrapper */
-            clear: both;
-        }
+.logo {
+    height: 70px;
+    width: auto;
+    object-fit: contain;
+}
+
+.company-info {
+    text-align: right;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+.asset-details-wrapper {
+    width: 360px;
+    /* float: right;  <-- Remove float */
+    margin-left: auto; /* Push to right with margin-left auto */
+    margin-bottom: 20px;
+    background-color: #fafafa;
+    padding: 10px 15px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    clear: both;
+}
+
+/* ... rest unchanged */
+
 
         /* Table styles */
         .asset-details-wrapper table {
@@ -174,3 +176,4 @@
     </div>
 </body>
 </html>
+
