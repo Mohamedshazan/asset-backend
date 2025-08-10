@@ -6,7 +6,7 @@
     <style>
        @page {
     size: A4;
-    margin: 5mm; /* equal margin all sides */
+    margin: 2mm; /* equal margin all sides */
 }
 body {
     font-family: 'DejaVu Sans', sans-serif;
@@ -22,10 +22,10 @@ body {
 }
 
 .container {
-    max-width: 160mm; /* A4 width minus 2*15mm padding */
+    max-width: 170mm; /* A4 width minus 2*15mm padding */
     margin: 10mm auto; /* centers container horizontally and adds vertical margin */
-    padding: 10mm;
-    border: 2px solid black;
+    padding: 5mm;
+    border: 1px solid black;
     box-sizing: border-box;
     overflow: hidden;
     page-break-inside: avoid;
@@ -35,7 +35,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .logo {
@@ -178,6 +178,7 @@ body {
     </div>
 </body>
 </html>
+
 
 
 
