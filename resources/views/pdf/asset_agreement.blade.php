@@ -46,15 +46,28 @@
 <p><strong>Employee Name:</strong> {{ $user->name }}</p>
 
 <p>
-I, <strong>{{ $user->name }}</strong>, acknowledge receipt of the above-mentioned asset.  
-I agree to return it, along with all accessories, upon resignation or upon request by IT.
+I, <strong>{{ $user->name }}</strong>, acknowledge receipt of a <strong>{{ $asset->asset_type ?? 'Desktop' }}</strong> and its accessories with serial number <strong>{{ $asset->serial_number }}</strong>.  
+I agree to return this <strong>{{ $asset->asset_type ?? 'Desktop' }}</strong> and all associated equipment to Brandix Essentials Ltd upon resignation or when requested by IT.
 </p>
 
 <p>
-I am responsible for the full value of the device in the event of loss or damage, as per company policy.
+I accept full responsibility for the replacement value of the <strong>{{ $asset->asset_type ?? 'Desktop' }}</strong> and its accessories in the event of loss or damage, as outlined in the Brandix Essentials ICT Policy.
 </p>
 
+<p>
+I agree to adhere to all company regulations and policies governing the use of this equipment as stated in the Brandix Essentials ICT Policy.
+</p>
+
+
 <p>Signature: _________________________</p>
+
+
+<div style="margin-top: 20px; font-size: 12px; font-style: italic;">
+    <strong>*Note.</strong><br>
+    Accessories include: Charger<br>
+    Damages include: Breaking any part of the {{ $asset->asset_type ?? 'Desktop' }} or its accessories, water damage, etc.<br>
+    Computer Name - {{ $asset->device_name ?? 'N/A' }}
+</div>
 
 </body>
 </html>
