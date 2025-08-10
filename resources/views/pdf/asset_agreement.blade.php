@@ -17,22 +17,24 @@
             color: #000;
             box-sizing: border-box;
         }
-        *, *:before, *:after {
+        *, *::before, *::after {
             box-sizing: inherit;
         }
 
-        /* Outer page border container */
+        /* Outer container with border and padding */
         .container {
             width: 100%;
             max-height: 270mm; /* fit inside A4 minus margins */
-            padding: 15px 25px; /* balanced padding for professional look */
-            border: 3px solid black; /* outer page border */
+            padding: 15px 25px;
+            border: 3px solid black;
             overflow: hidden;
-            box-sizing: border-box;
             page-break-inside: avoid;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Header flex container */
+        /* Header with logo and company info */
         .header-container {
             display: flex;
             justify-content: space-between;
@@ -51,20 +53,31 @@
             line-height: 1.2;
         }
 
-        /* Asset details box aligned right */
-        .asset-details-wrapper {
-            width: 360px;
-            float: right;
+        /* Content row to hold main content and asset details side by side */
+        .content-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             margin-bottom: 20px;
-            background-color: #fafafa;
-            padding: 10px 15px;
-            box-sizing: border-box;
-            border-radius: 4px;
-            /* No outer border on wrapper */
-            clear: both;
+            gap: 20px; /* spacing between left content and right asset details */
         }
 
-        /* Table styles */
+        /* Left main content placeholder (empty here, but needed for layout) */
+        .main-content {
+            flex: 1; /* takes remaining space */
+        }
+
+        /* Asset details box on right */
+        .asset-details-wrapper {
+            width: 360px;
+            background-color: #fafafa;
+            padding: 10px 15px;
+            border-radius: 4px;
+            box-sizing: border-box;
+            /* no float anymore */
+        }
+
+        /* Table styles with borders */
         .asset-details-wrapper table {
             border-collapse: collapse;
             width: 100%;
@@ -119,26 +132,32 @@
             </div>
         </div>
 
-        <div class="asset-details-wrapper">
-            <h3>Asset Details</h3>
-            <table>
-                <tr>
-                    <th>Device Name</th>
-                    <td>{{ $asset->device_name ?? '-' }}</td>
-                </tr>
-                <tr>
-                    <th>Brand</th>
-                    <td>{{ $asset->brand ?? '-' }}</td>
-                </tr>
-                <tr>
-                    <th>Model</th>
-                    <td>{{ $asset->model ?? '-' }}</td>
-                </tr>
-                <tr>
-                    <th>Serial Number</th>
-                    <td>{{ $asset->serial_number ?? '-' }}</td>
-                </tr>
-            </table>
+        <div class="content-row">
+            <div class="main-content">
+                <!-- Left side empty or add other content here if needed -->
+            </div>
+
+            <div class="asset-details-wrapper">
+                <h3>Asset Details</h3>
+                <table>
+                    <tr>
+                        <th>Device Name</th>
+                        <td>{{ $asset->device_name ?? '-' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Brand</th>
+                        <td>{{ $asset->brand ?? '-' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Model</th>
+                        <td>{{ $asset->model ?? '-' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Serial Number</th>
+                        <td>{{ $asset->serial_number ?? '-' }}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
 
         <div class="double-line"></div>
