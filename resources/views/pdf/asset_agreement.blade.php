@@ -7,7 +7,7 @@
     <style>
 @page {
     size: A4;
-    margin: 1mm; /* equal margin all sides */
+    margin: 1mm;
 }
 
 body {
@@ -26,7 +26,7 @@ body {
 
 .container {
     max-width: 190mm;
-    margin: 5mm auto 2mm auto; /* reduce bottom margin */
+    margin: 5mm auto 2mm auto;
     padding: 3mm;
     border: 1px solid black;
     box-sizing: border-box;
@@ -45,7 +45,7 @@ body {
     height: 70px;
     width: auto;
     object-fit: contain;
-    margin-top: 8px; /* Adjust this value as needed */
+    margin-top: 8px;
 }
 
 .company-info {
@@ -66,12 +66,12 @@ body {
     clear: both;
 }
 
-/* Table styles */
 .asset-details-wrapper table {
     border-collapse: collapse;
     width: 100%;
     margin: 10px 0 0 0;
 }
+
 .asset-details-wrapper th,
 .asset-details-wrapper td {
     border: 1px solid #000;
@@ -79,16 +79,16 @@ body {
     text-align: left;
     vertical-align: middle;
 }
+
 .asset-details-wrapper th {
     background-color: #f2f2f2;
     width: 40%;
     font-weight: 600;
 }
 
-/* Double line separator */
 .double-line {
     border-top: 3px double black;
-    margin: 15px 0 15px 0;
+    margin: 15px 0;
     clear: both;
 }
 
@@ -96,28 +96,23 @@ p {
     margin: 8px 0;
 }
 
-/* Signature and Date section - fixed style */
-.inline-signature-date {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 80px; /* space between Signature and Date */
-    margin-top: 40px;
-    font-size: 14px;
+/* Signature Table - PDF Safe */
+.signature-table {
     width: 100%;
+    margin-top: 40px;
+    border-collapse: collapse;
+    text-align: center;
 }
 
-.inline-signature-date span {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: none;
+.signature-table td {
+    width: 50%;
+    vertical-align: top;
+    padding: 0 20px;
 }
 
-.inline-signature-date .line {
-    display: block;
-    width: 150px; /* fixed length of line */
+.signature-table .line {
     border-bottom: 1px solid black;
+    height: 1.5em;
     margin-bottom: 5px;
 }
 
@@ -186,16 +181,19 @@ p {
         </p>
 
         <!-- Signature and Date in one paragraph -->
-      <p class="inline-signature-date">
-    <span>
-        <span class="line"></span>
-        Signature
-    </span>
-    <span>
-        <span class="line"></span>
-        Date
-    </span>
-</p>
+    <table class="signature-table">
+    <tr>
+        <td>
+            <div class="line"></div>
+            Signature
+        </td>
+        <td>
+            <div class="line"></div>
+            Date
+        </td>
+    </tr>
+</table>
+
 
 
         <div class="notes">
@@ -208,6 +206,7 @@ p {
 </body>
 
 </html>
+
 
 
 
