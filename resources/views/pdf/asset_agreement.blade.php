@@ -98,14 +98,14 @@
         .inline-signature-date {
             display: flex;
             justify-content: space-between;
-            max-width: 400px;
+            max-width: 300px;
             margin-top: 30px;
             font-size: 14px;
         }
 
         .inline-signature-date span {
             text-align: center;
-            width: 45%;
+            width: 35%;
         }
 
         .inline-signature-date .line {
@@ -198,3 +198,4 @@
     </div>
 </body>
 </html>
+
