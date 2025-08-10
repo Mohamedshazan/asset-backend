@@ -5,26 +5,26 @@
     <title>Asset Agreement</title>
     <style>
        @page {
-    size: A4;
-    margin: 1mm; /* equal margin all sides */
-}
-body {
-    font-family: 'DejaVu Sans', sans-serif;
-    font-size: 14px;
-    line-height: 1.4;
-    margin: 0;
-    padding: 0;
-    color: #000;
-    box-sizing: border-box;
-}
-*, *:before, *:after {
-    box-sizing: inherit;
-}
+            size: A4;
+            margin: 1mm; /* equal margin all sides */
+        }
+        body {
+            font-family: 'DejaVu Sans', sans-serif;
+            font-size: 14px;
+            line-height: 1.4;
+            margin: 0;
+            padding: 0;
+            color: #000;
+            box-sizing: border-box;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
 
-.container {
-    max-width: 190mm; /* closer to full A4 width (210mm) minus @page margins */
-    margin: 5mm auto; /* reduce vertical margin */
-    padding: 3mm; /* less padding inside the border */
+      .container {
+    max-width: 190mm;
+    margin: 5mm auto 2mm auto; /* reduce bottom margin */
+    padding: 3mm;
     border: 1px solid black;
     box-sizing: border-box;
     overflow: hidden;
@@ -32,42 +32,37 @@ body {
 }
 
 
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
 
-.logo {
-    height: 70px;
-    width: auto;
-    object-fit: contain;
-    margin-top: 8px; /* Adjust this value as needed */
-}
+        .logo {
+            height: 70px;
+            width: auto;
+            object-fit: contain;
+            margin-top: 8px; /* Adjust this value as needed */
+        }
 
+        .company-info {
+            text-align: right;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 1.2;
+        }
 
-.company-info {
-    text-align: right;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 1.2;
-}
-
-.asset-details-wrapper {
-    width: 360px;
-    /* float: right;  <-- Remove float */
-    margin-left: auto; /* Push to right with margin-left auto */
-    margin-bottom: 20px;
-    background-color: #fafafa;
-    padding: 10px 15px;
-    border-radius: 4px;
-    box-sizing: border-box;
-    clear: both;
-}
-
-/* ... rest unchanged */
-
+        .asset-details-wrapper {
+            width: 360px;
+            margin-left: auto;
+            margin-bottom: 20px;
+            background-color: #fafafa;
+            padding: 10px 15px;
+            border-radius: 4px;
+            box-sizing: border-box;
+            clear: both;
+        }
 
         /* Table styles */
         .asset-details-wrapper table {
@@ -88,51 +83,46 @@ body {
             font-weight: 600;
         }
 
-       /* Double line separator */
-.double-line {
-    border-top: 3px double black;
-    margin: 15px 0 15px 0;
-    clear: both;
-}
+        /* Double line separator */
+        .double-line {
+            border-top: 3px double black;
+            margin: 15px 0 15px 0;
+            clear: both;
+        }
 
-p {
-    margin: 8px 0;
-}
+        p {
+            margin: 8px 0;
+        }
 
-.signature-section {
-    margin-top: 30px;
-    font-size: 14px;
-    display: flex;
-    justify-content: space-between;
-    max-width: 400px;
-    flex-wrap: nowrap;
-}
+        /* Signature and Date inline in one paragraph */
+        .inline-signature-date {
+            display: flex;
+            justify-content: space-between;
+            max-width: 400px;
+            margin-top: 30px;
+            font-size: 14px;
+        }
 
-.signature-section > div {
-    width: 45%;
-    text-align: center;
-}
+        .inline-signature-date span {
+            text-align: center;
+            width: 45%;
+        }
 
-.signature-section .line {
-    border-bottom: 1px solid black;
-    height: 1.5em;
-    margin-bottom: 5px;
-}
+        .inline-signature-date .line {
+            border-bottom: 1px solid black;
+            display: block;
+            height: 1.5em;
+            margin-bottom: 5px;
+        }
 
-.signature-section .label {
-    font-weight: normal;
-    font-size: 14px;
-}
-
-
-/* Notes */
-.notes {
-    margin-top: 25px;
-    font-size: 12px;
-    font-style: italic;
-    clear: both;
-    line-height: 1.3;
-}
+        /* Notes */
+        .notes {
+            margin-top: 25px;
+            font-size: 12px;
+            font-style: italic;
+            clear: both;
+            line-height: 1.3;
+        }
     </style>
 </head>
 <body>
@@ -187,17 +177,17 @@ p {
             I agree to adhere to all company regulations and policies governing the use of this equipment as stated in the Brandix Essentials ICT Policy.
         </p>
 
-      <div class="signature-section">
-  <div>
-    <div class="line"></div>
-    <div class="label">Signature</div>
-  </div>
-  <div>
-    <div class="line"></div>
-    <div class="label">Date</div>
-  </div>
-</div>
-
+        <!-- Signature and Date in one paragraph -->
+        <p class="inline-signature-date">
+            <span>
+                <span class="line"></span>
+                Signature
+            </span>
+            <span>
+                <span class="line"></span>
+                Date
+            </span>
+        </p>
 
         <div class="notes">
             <strong>*Note.</strong><br>
@@ -208,13 +198,3 @@ p {
     </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
