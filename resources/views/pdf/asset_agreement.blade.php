@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>Asset Agreement</title>
     <style>
-       @page {
+        @page {
             size: A4;
-            margin: 1mm; /* equal margin all sides */
+            margin: 1mm;
+            /* equal margin all sides */
         }
+
         body {
             font-family: 'DejaVu Sans', sans-serif;
             font-size: 14px;
@@ -17,20 +20,23 @@
             color: #000;
             box-sizing: border-box;
         }
-        *, *:before, *:after {
+
+        *,
+        *:before,
+        *:after {
             box-sizing: inherit;
         }
 
-      .container {
-    max-width: 190mm;
-    margin: 5mm auto 2mm auto; /* reduce bottom margin */
-    padding: 3mm;
-    border: 1px solid black;
-    box-sizing: border-box;
-    overflow: hidden;
-    page-break-inside: avoid;
-}
-
+        .container {
+            max-width: 190mm;
+            margin: 5mm auto 2mm auto;
+            /* reduce bottom margin */
+            padding: 3mm;
+            border: 1px solid black;
+            box-sizing: border-box;
+            overflow: hidden;
+            page-break-inside: avoid;
+        }
 
         .header-container {
             display: flex;
@@ -43,7 +49,8 @@
             height: 70px;
             width: auto;
             object-fit: contain;
-            margin-top: 8px; /* Adjust this value as needed */
+            margin-top: 8px;
+            /* Adjust this value as needed */
         }
 
         .company-info {
@@ -70,6 +77,7 @@
             width: 100%;
             margin: 10px 0 0 0;
         }
+
         .asset-details-wrapper th,
         .asset-details-wrapper td {
             border: 1px solid #000;
@@ -77,6 +85,7 @@
             text-align: left;
             vertical-align: middle;
         }
+
         .asset-details-wrapper th {
             background-color: #f2f2f2;
             width: 40%;
@@ -94,18 +103,25 @@
             margin: 8px 0;
         }
 
-        /* Signature and Date inline in one paragraph */
+        /* Signature and Date inline in one line */
         .inline-signature-date {
             display: flex;
             justify-content: space-between;
-            max-width: 300px;
+            align-items: flex-end;
+            gap: 40px;
+            /* space between Signature and Date */
+            width: 100%;
+            /* take full width */
             margin-top: 30px;
             font-size: 14px;
+            flex-wrap: nowrap;
+            /* prevent stacking */
         }
 
         .inline-signature-date span {
             text-align: center;
-            width: 35%;
+            flex: 1;
+            /* equal space for both */
         }
 
         .inline-signature-date .line {
@@ -125,6 +141,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header-container">
@@ -165,7 +182,7 @@
         <div class="double-line"></div>
 
         <p>
-            I, <strong>{{ $user->name }}</strong>, acknowledge receipt of a <strong>{{ $asset->asset_type ?? 'Desktop' }}</strong> and its accessories with serial number <strong>{{ $asset->serial_number }}</strong>.  
+            I, <strong>{{ $user->name }}</strong>, acknowledge receipt of a <strong>{{ $asset->asset_type ?? 'Desktop' }}</strong> and its accessories with serial number <strong>{{ $asset->serial_number }}</strong>.
             I agree to return this <strong>{{ $asset->asset_type ?? 'Desktop' }}</strong> and all associated equipment to Brandix Essentials Ltd upon resignation or when requested by IT.
         </p>
 
@@ -197,5 +214,5 @@
         </div>
     </div>
 </body>
-</html>
 
+</html>
