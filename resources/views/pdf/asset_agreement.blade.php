@@ -5,110 +5,103 @@
     <meta charset="utf-8">
     <title>Asset Agreement</title>
     <style>
-        @page {
-            size: A4;
-            margin: 1mm;
-            /* equal margin all sides */
-        }
+@page {
+    size: A4;
+    margin: 1mm; /* equal margin all sides */
+}
 
-        body {
-            font-family: 'DejaVu Sans', sans-serif;
-            font-size: 14px;
-            line-height: 1.4;
-            margin: 0;
-            padding: 0;
-            color: #000;
-            box-sizing: border-box;
-        }
+body {
+    font-family: 'DejaVu Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
+    color: #000;
+    box-sizing: border-box;
+}
 
-        *,
-        *:before,
-        *:after {
-            box-sizing: inherit;
-        }
+*, *:before, *:after {
+    box-sizing: inherit;
+}
 
-        .container {
-            max-width: 190mm;
-            margin: 5mm auto 2mm auto;
-            /* reduce bottom margin */
-            padding: 3mm;
-            border: 1px solid black;
-            box-sizing: border-box;
-            overflow: hidden;
-            page-break-inside: avoid;
-        }
+.container {
+    max-width: 190mm;
+    margin: 5mm auto 2mm auto; /* reduce bottom margin */
+    padding: 3mm;
+    border: 1px solid black;
+    box-sizing: border-box;
+    overflow: hidden;
+    page-break-inside: avoid;
+}
 
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
 
-        .logo {
-            height: 70px;
-            width: auto;
-            object-fit: contain;
-            margin-top: 8px;
-            /* Adjust this value as needed */
-        }
+.logo {
+    height: 70px;
+    width: auto;
+    object-fit: contain;
+    margin-top: 8px; /* Adjust this value as needed */
+}
 
-        .company-info {
-            text-align: right;
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 1.2;
-        }
+.company-info {
+    text-align: right;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.2;
+}
 
-        .asset-details-wrapper {
-            width: 360px;
-            margin-left: auto;
-            margin-bottom: 20px;
-            background-color: #fafafa;
-            padding: 10px 15px;
-            border-radius: 4px;
-            box-sizing: border-box;
-            clear: both;
-        }
+.asset-details-wrapper {
+    width: 360px;
+    margin-left: auto;
+    margin-bottom: 20px;
+    background-color: #fafafa;
+    padding: 10px 15px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    clear: both;
+}
 
-        /* Table styles */
-        .asset-details-wrapper table {
-            border-collapse: collapse;
-            width: 100%;
-            margin: 10px 0 0 0;
-        }
+/* Table styles */
+.asset-details-wrapper table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0 0 0;
+}
+.asset-details-wrapper th,
+.asset-details-wrapper td {
+    border: 1px solid #000;
+    padding: 6px 10px;
+    text-align: left;
+    vertical-align: middle;
+}
+.asset-details-wrapper th {
+    background-color: #f2f2f2;
+    width: 40%;
+    font-weight: 600;
+}
 
-        .asset-details-wrapper th,
-        .asset-details-wrapper td {
-            border: 1px solid #000;
-            padding: 6px 10px;
-            text-align: left;
-            vertical-align: middle;
-        }
+/* Double line separator */
+.double-line {
+    border-top: 3px double black;
+    margin: 15px 0 15px 0;
+    clear: both;
+}
 
-        .asset-details-wrapper th {
-            background-color: #f2f2f2;
-            width: 40%;
-            font-weight: 600;
-        }
+p {
+    margin: 8px 0;
+}
 
-        /* Double line separator */
-        .double-line {
-            border-top: 3px double black;
-            margin: 15px 0 15px 0;
-            clear: both;
-        }
-
-        p {
-            margin: 8px 0;
-        }
-
-        /* Signature and Date inline in one line */
-       .inline-signature-date {
+/* Signature and Date section - fixed style */
+.inline-signature-date {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 80px; /* adjust space between Signature and Date */
+    gap: 80px; /* space between Signature and Date */
     margin-top: 40px;
     font-size: 14px;
     width: 100%;
@@ -118,7 +111,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: none; /* keep fixed width */
+    flex: none;
 }
 
 .inline-signature-date .line {
@@ -128,15 +121,15 @@
     margin-bottom: 5px;
 }
 
+/* Notes */
+.notes {
+    margin-top: 25px;
+    font-size: 12px;
+    font-style: italic;
+    clear: both;
+    line-height: 1.3;
+}
 
-        /* Notes */
-        .notes {
-            margin-top: 25px;
-            font-size: 12px;
-            font-style: italic;
-            clear: both;
-            line-height: 1.3;
-        }
     </style>
 </head>
 
@@ -214,4 +207,5 @@
 </body>
 
 </html>
+
 
