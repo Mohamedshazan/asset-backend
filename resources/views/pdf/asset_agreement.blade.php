@@ -7,7 +7,7 @@
     <style>
 @page {
     size: A4;
-    margin: 2mm;
+    margin: 1mm;
 }
 
 body {
@@ -22,7 +22,7 @@ body {
 
 .container {
     border: 1px solid black;
-    padding: 6mm; /* reduced padding */
+    padding: 4mm; /* reduced padding */
     box-sizing: border-box;
     page-break-inside: avoid;
 }
@@ -166,6 +166,7 @@ p {
 </body>
 
 </html>
+
 
 
 
