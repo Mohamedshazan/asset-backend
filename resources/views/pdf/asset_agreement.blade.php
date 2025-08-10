@@ -20,6 +20,22 @@ body {
     box-sizing: border-box;
 }
 
+
+
+.logo {
+    height: 70px;
+    width: auto;
+    object-fit: contain;
+    margin-top: 8px;
+}
+
+.company-info {
+    text-align: right;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.2;
+}
+        
 .container {
     border: 1px solid black;
     padding: 4mm; /* reduced padding */
@@ -166,6 +182,7 @@ p {
 </body>
 
 </html>
+
 
 
 
