@@ -7,93 +7,53 @@
     <style>
 @page {
     size: A4;
-    margin: 1mm; /* equal margin on all four sides */
+    margin: 15mm;
 }
 
 body {
     font-family: 'DejaVu Sans', sans-serif;
-    font-size: 14px;
-    line-height: 1.4;
+    font-size: 13px; /* slightly smaller */
+    line-height: 1.3;
     margin: 0;
     padding: 0;
     color: #000;
     box-sizing: border-box;
 }
 
-*, *:before, *:after {
-    box-sizing: inherit;
-}
-
 .container {
     border: 1px solid black;
-    padding: 8mm;
-    height: calc(100% - 2mm);
+    padding: 6mm; /* reduced padding */
     box-sizing: border-box;
+    page-break-inside: avoid;
 }
 
-/* Header */
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.logo {
-    height: 70px;
-    width: auto;
-    object-fit: contain;
-}
-
-.company-info {
-    text-align: right;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 1.2;
-}
-
-/* Asset Details */
+/* Make asset details wrapper narrower */
 .asset-details-wrapper {
-    width: 360px;
+    width: 320px;
     margin-left: auto;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     background-color: #fafafa;
-    padding: 10px 15px;
+    padding: 8px 12px;
     border-radius: 4px;
+    page-break-inside: avoid;
 }
 
 .asset-details-wrapper table {
     border-collapse: collapse;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 6px;
 }
 
 .asset-details-wrapper th,
 .asset-details-wrapper td {
     border: 1px solid #000;
-    padding: 6px 10px;
-    text-align: left;
+    padding: 4px 8px;
+    font-size: 13px;
 }
 
-.asset-details-wrapper th {
-    background-color: #f2f2f2;
-    width: 40%;
-    font-weight: 600;
-}
-
-.double-line {
-    border-top: 3px double black;
-    margin: 15px 0;
-}
-
-p {
-    margin: 8px 0;
-}
-
-/* Signature */
 .signature-table {
     width: 70%;
-    margin-top: 40px;
+    margin-top: 30px;
     border-collapse: collapse;
     text-align: center;
 }
@@ -101,21 +61,32 @@ p {
 .signature-table td {
     width: 25%;
     vertical-align: top;
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
 .signature-table .line {
     border-bottom: 1px solid black;
-    height: 1.5em;
-    margin-bottom: 5px;
+    height: 1.3em;
+    margin-bottom: 4px;
 }
 
-/* Notes */
 .notes {
-    margin-top: 25px;
-    font-size: 12px;
+    margin-top: 20px;
+    font-size: 11px;
     font-style: italic;
-    line-height: 1.3;
+    line-height: 1.2;
+}
+
+/* Reduce vertical spacing */
+p {
+    margin: 6px 0;
+}
+
+.double-line {
+    border-top: 3px double black;
+    margin: 12px 0;
+}
+
 }
     </style>
 </head>
@@ -195,4 +166,5 @@ p {
 </body>
 
 </html>
+
 
