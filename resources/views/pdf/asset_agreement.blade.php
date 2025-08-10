@@ -4,11 +4,15 @@
     <meta charset="utf-8">
     <title>Asset Assignment Agreement</title>
     <style>
+        @page {
+            margin: 15px;
+        }
         body {
             font-family: DejaVu Sans, sans-serif;
             font-size: 14px;
             line-height: 1.5;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
         }
         .header-container {
             display: flex;
@@ -25,7 +29,6 @@
             text-align: right;
         }
         table {
-            width: auto;
             border-collapse: collapse;
             margin: 14px 0 14px auto;
             text-align: left;
@@ -53,11 +56,19 @@
             text-align: right;
             margin: 14px 0;
         }
+
+        /* Scale content for print/PDF to fit one page */
+        @media print {
+            body {
+                transform: scale(0.95);
+                transform-origin: top left;
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
 
-<!-- Logo (left) and Company Header (right) -->
 <div class="header-container">
     <img src="{{ public_path('images/logobr.jpg') }}" class="logo" alt="Brandix Logo">
     <div class="company-info">
@@ -66,9 +77,7 @@
     </div>
 </div>
 
-<!-- Right-aligned content container -->
 <div class="right-align-container">
-    <!-- Serial Numbers Table -->
     <h3>Serial Numbers</h3>
     <table>
         <tr>
@@ -85,7 +94,6 @@
         </tr>
     </table>
 
-    <!-- Make/Model -->
     <div class="make-model">
         <p><strong>Make:</strong> HP</p>
         <p><strong>Model:</strong> HP ProDesk 400 G4 DM</p>
@@ -94,11 +102,10 @@
 
 <div class="divider"></div>
 
-<!-- Rest of the document (left-aligned) -->
 <p><strong>Date:</strong> 
-    <span class="underline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <span class="underline"></span>
     2025-06/28
-    <span class="underline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <span class="underline"></span>
 </p>
 
 <p><strong>Employee Name:</strong> <strong>Amila Silva</strong></p>
