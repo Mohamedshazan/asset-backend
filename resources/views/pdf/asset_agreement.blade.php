@@ -104,32 +104,30 @@
         }
 
         /* Signature and Date inline in one line */
-        .inline-signature-date {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            gap: 40px;
-            /* space between Signature and Date */
-            width: 100%;
-            /* take full width */
-            margin-top: 30px;
-            font-size: 14px;
-            flex-wrap: nowrap;
-            /* prevent stacking */
-        }
+       .inline-signature-date {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 80px; /* adjust space between Signature and Date */
+    margin-top: 40px;
+    font-size: 14px;
+    width: 100%;
+}
 
-        .inline-signature-date span {
-            text-align: center;
-            flex: 1;
-            /* equal space for both */
-        }
+.inline-signature-date span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: none; /* keep fixed width */
+}
 
-        .inline-signature-date .line {
-            border-bottom: 1px solid black;
-            display: block;
-            height: 1.5em;
-            margin-bottom: 5px;
-        }
+.inline-signature-date .line {
+    display: block;
+    width: 150px; /* fixed length of line */
+    border-bottom: 1px solid black;
+    margin-bottom: 5px;
+}
+
 
         /* Notes */
         .notes {
@@ -216,3 +214,4 @@
 </body>
 
 </html>
+
