@@ -6,7 +6,7 @@
     <style>
        @page {
     size: A4;
-    margin: 20mm; /* equal margin all sides */
+    margin: 5mm; /* equal margin all sides */
 }
 body {
     font-family: 'DejaVu Sans', sans-serif;
@@ -176,4 +176,5 @@ body {
     </div>
 </body>
 </html>
+
 
