@@ -4,19 +4,49 @@
     <meta charset="utf-8">
     <title>Asset Agreement</title>
     <style>
-        body { font-family: DejaVu Sans, sans-serif; font-size: 14px; line-height: 1.5; }
-        .header-container { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .logo { height: 45px; }
-        table { border-collapse: collapse; width: auto; margin: 10px 0; }
-        table, th, td { border: 1px solid black; }
-        th, td { padding: 6px 10px; }
+        body { 
+            font-family: DejaVu Sans, sans-serif; 
+            font-size: 14px; 
+            line-height: 1.5; 
+            margin: 20px;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .logo {
+            height: 45px;
+            flex-shrink: 0;
+        }
+        .company-info {
+            text-align: right;
+            flex-grow: 1;
+        }
+        table { 
+            border-collapse: collapse; 
+            width: auto; 
+            margin: 10px 0; 
+        }
+        table, th, td { 
+            border: 1px solid black; 
+        }
+        th, td { 
+            padding: 6px 10px; 
+        }
+        .note {
+            margin-top: 20px; 
+            font-size: 12px; 
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
 
 <div class="header-container">
     <img src="{{ public_path('images/logobr.jpg') }}" class="logo" alt="Logo">
-    <div>
+    <div class="company-info">
         <strong>Brandix Apparel Solutions Limited</strong><br>
         Batticaloa
     </div>
@@ -58,11 +88,9 @@ I accept full responsibility for the replacement value of the <strong>{{ $asset-
 I agree to adhere to all company regulations and policies governing the use of this equipment as stated in the Brandix Essentials ICT Policy.
 </p>
 
-
 <p>Signature: _________________________</p>
 
-
-<div style="margin-top: 20px; font-size: 12px; font-style: italic;">
+<div class="note">
     <strong>*Note.</strong><br>
     Accessories include: Charger<br>
     Damages include: Breaking any part of the {{ $asset->asset_type ?? 'Desktop' }} or its accessories, water damage, etc.<br>
