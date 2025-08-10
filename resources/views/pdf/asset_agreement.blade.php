@@ -17,10 +17,14 @@
             page-break-inside: avoid;
             color: #000;
         }
+        /* Border around the entire page content */
         .container {
             width: 100%;
             max-height: 270mm; /* fit inside A4 minus margins */
             overflow: hidden;
+            border: 3px solid black; /* Outer page border */
+            padding: 20px;
+            box-sizing: border-box;
         }
         .header-container {
             display: flex;
@@ -29,7 +33,7 @@
             margin-bottom: 20px;
         }
         .logo {
-            height: 70px; /* Increased logo height */
+            height: 70px; /* Increased logo size */
             width: auto;
         }
         .company-info {
@@ -38,38 +42,41 @@
             font-size: 16px;
         }
 
-        /* New wrapper around asset details to add border and right alignment */
+        /* Asset details wrapper without border */
         .asset-details-wrapper {
-            border: 2px solid black;
-            padding: 15px;
-            width: 360px; /* Standard fixed width */
-            float: right; /* Align to right */
+            width: 360px; /* Standard width */
+            float: right; /* Align right */
             margin-bottom: 20px;
             background-color: #fafafa;
             box-sizing: border-box;
         }
 
-        /* Style table inside asset details wrapper */
+        /* Table styles without borders */
         .asset-details-wrapper table {
             border-collapse: collapse;
             width: 100%;
             margin: 10px 0;
         }
+        /* Remove all borders */
         .asset-details-wrapper table, 
         .asset-details-wrapper th, 
         .asset-details-wrapper td {
-            border: 1px solid black;
+            border: none;
         }
         .asset-details-wrapper th, 
         .asset-details-wrapper td {
             padding: 6px 10px;
             text-align: left;
         }
+        .asset-details-wrapper th {
+            background-color: #f2f2f2;
+            width: 40%;
+        }
 
         .double-line {
             border-top: 3px double black;
             margin: 10px 0;
-            clear: both; /* Clear float for lines below */
+            clear: both; /* Clear floats */
         }
         .signature-section {
             margin-top: 30px;
@@ -93,7 +100,6 @@
             </div>
         </div>
 
-        <!-- Asset Details section with border and right alignment -->
         <div class="asset-details-wrapper">
             <h3>Asset Details</h3>
             <table>
