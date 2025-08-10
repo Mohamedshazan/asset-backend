@@ -14,17 +14,31 @@
             margin: 0;
             padding: 0;
         }
+
+        /* Header with centered alignment and bottom border */
         .header-container {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1.5px solid #000; /* Professional bottom border */
         }
+
+        /* Logo styling */
         .logo {
-            height: 60px;
+            height: 55px; /* Balanced size */
+            width: auto;
+            object-fit: contain;
         }
+
+        /* Company info styling */
         .company-info {
             text-align: right;
+            font-size: 14px;
+            line-height: 1.3;
         }
+
         .right-align-container {
             text-align: right;
         }
@@ -57,7 +71,7 @@
             margin: 14px 0;
         }
 
-        /* Scale content for print/PDF to fit one page */
+        /* Scale for PDF to fit one page */
         @media print {
             body {
                 transform: scale(0.95);
